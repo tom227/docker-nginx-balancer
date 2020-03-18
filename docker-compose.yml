@@ -1,0 +1,24 @@
+version: '3'
+services:
+  nginx-balancer:
+    container_name: nginx-balancer
+    hostname: nginx-balancer
+    build: ./balancer/
+    ports:
+      - "8080:80"
+  nginx-web1:
+    container_name: nginx-web1
+    hostname: nginx-web1
+    build: ./web1/
+    ports:
+      - "8081:80"
+    volumes:
+      - "./web1/html:/usr/share/nginx/html"
+  nginx-web2:
+    container_name: nginx-web2
+    hostname: nginx-web2
+    build: ./web2/
+    ports:
+      - "8082:80"
+    volumes:
+      - "./web2/html:/usr/share/nginx/html"
